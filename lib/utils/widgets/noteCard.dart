@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:noteapplication_ui_flutter/data_models/delete_note.dart';
 import 'package:noteapplication_ui_flutter/pages/CreateNote.dart';
+import 'package:noteapplication_ui_flutter/pages/home_page.dart';
+import 'package:noteapplication_ui_flutter/pages/note_view_page.dart';
 
 import 'package:noteapplication_ui_flutter/utils/constants/app_measurments.dart' as app_measure;
 import 'package:noteapplication_ui_flutter/utils/constants/app_strings.dart' as app_strings;
@@ -8,6 +11,7 @@ class NoteCard extends StatelessWidget {
   const NoteCard({
     super.key,
     required this.deviceMedia,
+    required this.id,
     required this.noteTitle,
     required this.noteDetails,
     required this.createdAt,
@@ -16,6 +20,7 @@ class NoteCard extends StatelessWidget {
   });
 
   final MediaQueryData deviceMedia;
+  final String id;
   final String noteTitle;
   final String noteDetails;
   final String createdAt;
@@ -34,12 +39,12 @@ class NoteCard extends StatelessWidget {
         onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const NoteViewPage(
-              id: 'id123',
-              title: 'Note Title',
-              details: "To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:",
-              createdAt: '20/05/2023 10:03',
-              lastUpdatedAt: '20/05/2023 10:03',
+            MaterialPageRoute(builder: (context) => NoteViewPage(
+              id: id,
+              title: noteTitle,
+              details: noteDetails,
+              createdAt: createdAt,
+              lastUpdatedAt: lastUpdatedAt,
             )),
           );
         },
@@ -128,9 +133,10 @@ class NoteCard extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => CreateNote(
-                              id: 'id1234',
-                              title: 'Demo Note',
-                              details: "To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:",
+                              id: id,
+                              title: noteTitle,
+                              details: noteDetails,
+                              createdAt: createdAt,
                             )
                           ),
                         );
@@ -138,7 +144,14 @@ class NoteCard extends StatelessWidget {
                     ),
                     TextButton(
                       child: const Text('DELETE'),
-                      onPressed: () {},
+                      onPressed: () {
+                        deleteNoteWithID(id);
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => const MyHomePage()
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),
@@ -220,122 +233,4 @@ class NoteCard extends StatelessWidget {
       ),
     );
   }
-}
-
-class NoteViewPage extends StatefulWidget {
-  const NoteViewPage({
-    super.key,
-    required this.id,
-    required this.title,
-    required this.details,
-    required this.createdAt,
-    required this.lastUpdatedAt,
-  });
-
-  final String id;
-  final String title;
-  final String details;
-  final String createdAt;
-  final String lastUpdatedAt;
-
-  @override
-  State<NoteViewPage> createState() => _NoteViewPageState();
-}
-
-class _NoteViewPageState extends State<NoteViewPage> {
-
-  @override
-  Widget build(BuildContext context) {
-    // Accessing MediaQuery for responsive layout
-    // Calculate the height and width of the screen.
-    var deviceMedia = MediaQuery.of(context);
-    final double screenHeight = deviceMedia.size.height - deviceMedia.padding.top - deviceMedia.padding.bottom;
-    final double screenWidth = deviceMedia.size.width - deviceMedia.padding.left - deviceMedia.padding.right;
-
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: app_measure.height16 * screenWidth),
-        child: Column(
-          // mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            SizedBox(height: app_measure.height10 * screenHeight,),
-
-            Expanded(
-              child: SingleChildScrollView(
-                child: NoteCard(
-                  deviceMedia: deviceMedia,
-                  noteTitle: widget.title,
-                  noteDetails: widget.details,
-                  createdAt: widget.createdAt,
-                  lastUpdatedAt: widget.lastUpdatedAt,
-                  isEditing: false,
-                ),
-              ),
-            ),
-    
-            SizedBox(height: app_measure.height10 * screenHeight,),
-
-            Container(
-              color: Colors.grey[200],
-              child: Column(
-                children: [
-                  SizedBox(height: app_measure.height10 * screenHeight,),
-
-                  Row(
-                    children: [
-                      SizedBox(width: app_measure.height40 * screenWidth,),
-
-                      Expanded(
-                        child: TextButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => CreateNote(
-                                  id: 'id1234',
-                                  title: 'Demo Note',
-                                  details: "To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:",
-                                )
-                              ),
-                            );
-                          },
-                          style: const ButtonStyle(
-                            backgroundColor: MaterialStatePropertyAll(Colors.blue),
-                          ),
-                          child: Text('EDIT', style: TextStyle(fontSize: app_measure.height18 * screenHeight, fontWeight: FontWeight.w700, color: Colors.white),),
-                        ),
-                      ),
-
-                      SizedBox(width: app_measure.height40 * screenWidth,),
-                      SizedBox(width: app_measure.height40 * screenWidth,),
-
-                      Expanded(
-                        child: TextButton(
-                          style: const ButtonStyle(
-                            backgroundColor: MaterialStatePropertyAll(Colors.red),
-                          ),
-                          onPressed: () {
-                            // Action for the second button
-                          },
-                          child: Text('DELETE', style: TextStyle(fontSize: app_measure.height18 * screenHeight, fontWeight: FontWeight.w700, color: Colors.white)),
-                        ),
-                      ),
-
-                      SizedBox(width: app_measure.height40 * screenWidth,),
-                    ],
-                  ),
-
-                  SizedBox(height: app_measure.height10 * screenHeight,),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),// This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
-
 }

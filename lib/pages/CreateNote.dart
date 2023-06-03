@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:noteapplication_ui_flutter/data_models/create_note.dart';
+import 'package:noteapplication_ui_flutter/data_models/update_note.dart';
 import 'package:noteapplication_ui_flutter/pages/home_page.dart';
 
 import 'package:noteapplication_ui_flutter/utils/constants/app_measurments.dart' as app_measure;
@@ -10,11 +12,13 @@ class CreateNote extends StatefulWidget {
     this.id = '',
     this.title = '',
     this.details = '',
+    this.createdAt = '',
   });
 
   final String id;
   final String title;
   final String details;
+  final String createdAt;
 
   @override
   _CreateNotePageState createState() => _CreateNotePageState();
@@ -45,9 +49,14 @@ class _CreateNotePageState extends State<CreateNote> {
   void _submitForm() {
     if (_createNoteFormKey.currentState!.validate()) {
       String noteText = _noteTitleController.text;
-      String d = _noteDetailsController.text;
+      String details = _noteDetailsController.text;
+      if (widget.id == '') {
+        createNoteWithData(noteText, details);
+      } else {
+        updateNoteWithID(widget.id, noteText, details, widget.createdAt);
+      }
       // Perform further actions with the note, such as saving it to a database or displaying it in another widget
-      print('Note: $noteText, $d');
+      print('Note: $noteText, $details');
       showSuccessNotification(context);
       Navigator.pushReplacement(
         context,

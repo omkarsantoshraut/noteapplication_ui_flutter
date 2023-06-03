@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:noteapplication_ui_flutter/data_models/all_notes.dart';
 
 import 'package:noteapplication_ui_flutter/utils/constants/app_measurments.dart' as app_measure;
 import 'package:noteapplication_ui_flutter/utils/constants/app_strings.dart' as app_strings;
@@ -13,6 +14,35 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  List<dynamic> notes = [];
+
+  Future<void> fetchData() async {
+    var data = await fetchAllNotes();
+    setState(() {
+      notes = data;
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    fetchData();
+  }
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+  }
+
+  @override
+  void didUpdateWidget(covariant MyHomePage oldWidget) {
+    // TODO: implement didUpdateWidget
+    super.didUpdateWidget(oldWidget);
+    fetchData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,13 +65,14 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               SizedBox(height: app_measure.height10 * screenHeight,),
 
-              for (var i = 0; i < 10; i++) ...[
+              for (var note in notes) ...[
                 NoteCard(
                   deviceMedia: deviceMedia,
-                  noteTitle: 'Note Title',
-                  noteDetails: "To show formatted text in Flutter, you can use the RichText widget along with various text styling widgets such as TextSpan and TextStyle. Here's an example of how you can display formatted text:",
-                  createdAt: '20/05/2023 10:03',
-                  lastUpdatedAt: '20/05/2023 10:03',
+                  id: note['_id'],
+                  noteTitle: note['title'],
+                  noteDetails: note['details'],
+                  createdAt: note['createdAt'],
+                  lastUpdatedAt: note['lastUpdatedAt'],
                 ),
       
                 SizedBox(height: app_measure.height10 * screenHeight,)
