@@ -9,7 +9,6 @@ FlutterNoteApp is a cross-platform note-taking application built with Flutter. I
 - [Features](#features)
 - [Technologies](#tech)
 - [Demo Video](#video)
-- [Live Demo](#demo)
 
 
 <a id="install">
@@ -63,10 +62,5 @@ FlutterNoteApp is a cross-platform note-taking application built with Flutter. I
   
   # Demo Video
   
-  Follow: https://www.youtube.com/watch?v=nj_eVMxFd58
+  Follow: https://www.youtube.com/watch?v=5Wff1x71DUo and https://www.youtube.com/watch?v=vO6o5bCxzio
 
-<a id="demo">
-  
-  # Live Demo:
-  
-  Please follow https://sa-0t29.onrender.com/ in order to see the live demo of this project.
