@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:noteapplication_ui_flutter/data_models/all_notes.dart';
-
+import 'package:noteapplication_ui_flutter/server_models/noteServerModel.dart';
 import 'package:noteapplication_ui_flutter/utils/constants/app_measurments.dart' as app_measure;
 import 'package:noteapplication_ui_flutter/utils/constants/app_strings.dart' as app_strings;
 import 'package:noteapplication_ui_flutter/pages/CreateNote.dart';
@@ -15,35 +15,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  List<dynamic> notes = [];
-
-  Future<void> fetchData() async {
-    var data = await fetchAllNotes();
-    setState(() {
-      notes = data;
-    });
-  }
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    fetchData();
-  }
-
-  @override
-  void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
-    super.didChangeDependencies();
-  }
-
-  @override
-  void didUpdateWidget(covariant MyHomePage oldWidget) {
-    // TODO: implement didUpdateWidget
-    super.didUpdateWidget(oldWidget);
-    fetchData();
-  }
-
   @override
   Widget build(BuildContext context) {
     // Accessing MediaQuery for responsive layout
@@ -57,30 +28,21 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text(app_strings.appHeaderName),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: app_measure.height16 * screenWidth),
-          child: Column(
-            // mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              SizedBox(height: app_measure.height10 * screenHeight,),
-
-              for (var note in notes) ...[
-                NoteCard(
-                  deviceMedia: deviceMedia,
-                  id: note['_id'],
-                  noteTitle: note['title'],
-                  noteDetails: note['details'],
-                  createdAt: note['createdAt'],
-                  lastUpdatedAt: note['lastUpdatedAt'],
-                ),
-      
-                SizedBox(height: app_measure.height10 * screenHeight,)
-              ]
-            ],
-          ),
-        ),
+      body: FutureBuilder<List<dynamic>>(
+        future: fetchAllNotes(),
+        builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            // While data is being fetched, show a loading view
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            // If there's an error during data fetching, display an error message
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else {
+            return WidgetWithData(screenWidth: screenWidth, screenHeight: screenHeight, notes: snapshot.data, deviceMedia: deviceMedia);
+          }
+        }
       ),
+      // body: WidgetWithData(screenWidth: screenWidth, screenHeight: screenHeight, notes: notes, deviceMedia: deviceMedia),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: app_strings.createNoteToolTip,
@@ -93,6 +55,53 @@ class _MyHomePageState extends State<MyHomePage> {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => CreateNote()),
+    );
+  }
+}
+
+class WidgetWithData extends StatelessWidget {
+  const WidgetWithData({
+    super.key,
+    required this.screenWidth,
+    required this.screenHeight,
+    required this.notes,
+    required this.deviceMedia,
+  });
+
+  final double screenWidth;
+  final double screenHeight;
+  final List<dynamic>? notes;
+  final MediaQueryData deviceMedia;
+
+  @override
+  Widget build(BuildContext context) {
+    if (notes == null) {
+      return const Center(child: Text('Something went wrong.'));
+    }
+
+    return SingleChildScrollView(
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: app_measure.height16 * screenWidth),
+        child: Column(
+          // mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            SizedBox(height: app_measure.height10 * screenHeight,),
+
+            for (NoteServerModel note in notes!) ...[
+              NoteCard(
+                deviceMedia: deviceMedia,
+                id: note.noteID ?? '',
+                noteTitle: note.noteTitle,
+                noteDetails: note.noteDetails,
+                createdAt: note.createdAt ?? '',
+                lastUpdatedAt: note.lastUpdatedAt ?? '',
+              ),
+
+              SizedBox(height: app_measure.height10 * screenHeight,)
+            ]
+          ],
+        ),
+      ),
     );
   }
 }

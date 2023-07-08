@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:noteapplication_ui_flutter/pages/CreateNote.dart';
 
 import 'package:noteapplication_ui_flutter/utils/constants/app_measurments.dart' as app_measure;
-import 'package:noteapplication_ui_flutter/utils/constants/app_strings.dart' as app_strings;
 import 'package:noteapplication_ui_flutter/utils/widgets/noteCard.dart';
 
 class NoteViewPage extends StatefulWidget {
@@ -43,7 +42,6 @@ class _NoteViewPageState extends State<NoteViewPage> {
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: app_measure.height16 * screenWidth),
         child: Column(
-          // mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SizedBox(height: app_measure.height10 * screenHeight,),
 

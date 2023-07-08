@@ -12,6 +12,7 @@ const String  requirednoteTitleFormFieldLabelError = 'Please enter valid note ti
 const String noteDetailsFormFieldLabel = 'Note Details';
 const String submitButtonLabel = 'Submit';
 const String successCreatedNoteMessage = 'Success! Created Note.';
+const String successUpdatedNoteMessage = 'Success! Updated Note.';
 
 // API endpoints
 
