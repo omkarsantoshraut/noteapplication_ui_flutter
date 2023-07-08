@@ -25,6 +25,8 @@ class CreateNote extends StatefulWidget {
 }
 
 class _CreateNotePageState extends State<CreateNote> {
+  bool isNoteUpdating = false;
+  bool isLoading = false;
   final TextEditingController _noteTitleController = TextEditingController();
   final TextEditingController _noteDetailsController = TextEditingController();
   // TextFormField validation global keys
@@ -37,6 +39,7 @@ class _CreateNotePageState extends State<CreateNote> {
     if (widget.id != '') {
       _noteTitleController.text = widget.title;
       _noteDetailsController.text = widget.details;
+      isNoteUpdating = true;
     }
   }
 
@@ -46,7 +49,7 @@ class _CreateNotePageState extends State<CreateNote> {
     super.dispose();
   }
 
-  void _submitForm() {
+  void _submitForm() async {
     if (_createNoteFormKey.currentState!.validate()) {
       String noteText = _noteTitleController.text;
       String details = _noteDetailsController.text;
@@ -57,6 +60,10 @@ class _CreateNotePageState extends State<CreateNote> {
       }
       // Perform further actions with the note, such as saving it to a database or displaying it in another widget
       print('Note: $noteText, $details');
+      setState(() {
+        isLoading = true;
+      });
+      await Future.delayed(Duration(seconds: 2));
       showSuccessNotification(context);
       Navigator.pushReplacement(
         context,
@@ -122,7 +129,7 @@ class _CreateNotePageState extends State<CreateNote> {
                 SizedBox(height: app_measure.height16 * screenHeight),
       
                 ElevatedButton(
-                  onPressed: _submitForm,
+                  onPressed: isLoading ? null : _submitForm,
                   style: ButtonStyle(
                     backgroundColor: const MaterialStatePropertyAll(Colors.green),
                     fixedSize: MaterialStatePropertyAll(Size(screenWidth - app_measure.height186 * screenWidth, app_measure.height40 * screenHeight))
@@ -136,6 +143,8 @@ class _CreateNotePageState extends State<CreateNote> {
                     ),
                   ),
                 ),
+
+                if (isLoading) CircularProgressIndicator(),
               ],
             ),
           ),
@@ -145,12 +154,13 @@ class _CreateNotePageState extends State<CreateNote> {
   }
 
   void showSuccessNotification(BuildContext context) {
-    const snackBar = SnackBar(
+    final String text = isNoteUpdating ? app_strings.successUpdatedNoteMessage : app_strings.successCreatedNoteMessage;
+    var snackBar = SnackBar(
       content: Row(
         children: [
           Icon(Icons.check_circle, color: Colors.green),
           SizedBox(width: 8.0),
-          Text(app_strings.successCreatedNoteMessage),
+          Text(text),
         ],
       ), 
     );
